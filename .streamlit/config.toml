@@ -1,0 +1,15 @@
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "dark"
+primaryColor = "#0A84FF"
+backgroundColor = "#0B0B0D"
+secondaryBackgroundColor = "#1C1C1E"
+textColor = "#F5F5F7"
+borderColor = "rgba(255,255,255,0.08)"
+font = '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI Variable Text", "Segoe UI", sans-serif'
+headingFont = '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, "Segoe UI Variable Display", "Segoe UI", sans-serif'
+baseFontSize = 17
+baseRadius = "10px"
+buttonRadius = "9999px"

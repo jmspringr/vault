@@ -1,0 +1,211 @@
+/* Vault dashboard styles: Apple HIG-inspired dark theme */
+
+:root {
+  /* Surfaces */
+  --surface-base: #0B0B0D;
+  --surface-elevated: rgba(28, 28, 30, 0.62);
+  --surface-elevated-hover: rgba(36, 36, 38, 0.72);
+  --fill-tertiary: rgba(118, 118, 128, 0.24);
+  --fill-quaternary: rgba(118, 118, 128, 0.16);
+
+  /* Text */
+  --text-primary: #F5F5F7;
+  --text-secondary: rgba(235, 235, 245, 0.62);
+  --text-tertiary: rgba(235, 235, 245, 0.36);
+
+  /* Lines */
+  --separator: rgba(255, 255, 255, 0.08);
+  --separator-strong: rgba(255, 255, 255, 0.14);
+
+  /* Accent and series */
+  --accent: #0A84FF;
+  --accent-pressed: #0071E3;
+  --accent-ring: rgba(10, 132, 255, 0.45);
+  --series-income: #0A84FF;
+  --series-expense: #D95926;
+
+  /* Shape and spacing (8px grid) */
+  --radius-card: 14px;
+  --radius-field: 10px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+
+  /* Motion: spring curve (light overshoot); CSS transitions retarget mid-flight */
+  --spring: linear(0, 0.157, 0.438 12%, 0.723 20%, 0.885 28%, 0.968 36%,
+                   1.006 45%, 1.017 54%, 1.012 65%, 1.003 80%, 1);
+  --spring-duration: 520ms;
+  --press-duration: 90ms;
+
+  --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+               "Segoe UI Variable Text", "Segoe UI", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui,
+                  "Segoe UI Variable Display", "Segoe UI", sans-serif;
+}
+
+/* App background: graphite with a faint cool light source */
+.stApp {
+  background:
+    radial-gradient(1100px 520px at 50% -12%, rgba(10, 132, 255, 0.09), transparent 62%),
+    var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+}
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stMainBlockContainer"] {
+  max-width: 1080px;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+/* Type scale (role-based) */
+[data-testid="stMarkdownContainer"] .vt-large-title {
+  font-family: var(--font-display);
+  font-size: 34px; line-height: 41px; font-weight: 700; letter-spacing: 0.37px;
+  color: var(--text-primary); margin: 0;
+}
+[data-testid="stMarkdownContainer"] .vt-title-3 {
+  font-family: var(--font-display);
+  font-size: 20px; line-height: 25px; font-weight: 600; letter-spacing: 0.38px;
+  color: var(--text-primary); margin: 0;
+}
+[data-testid="stMarkdownContainer"] .vt-headline {
+  font-size: 17px; line-height: 22px; font-weight: 600; letter-spacing: -0.43px;
+  color: var(--text-primary); margin: 0;
+}
+[data-testid="stMarkdownContainer"] .vt-body {
+  font-size: 17px; line-height: 22px; font-weight: 400; letter-spacing: -0.43px;
+  color: var(--text-secondary); margin: 0;
+}
+[data-testid="stMarkdownContainer"] .vt-subheadline {
+  font-size: 15px; line-height: 20px; letter-spacing: -0.23px;
+  color: var(--text-secondary); margin: 0;
+}
+[data-testid="stMarkdownContainer"] .vt-caption {
+  font-size: 12px; line-height: 16px; letter-spacing: 0;
+  color: var(--text-tertiary); margin: 0;
+}
+.vt-stack-1 > * + * { margin-top: var(--space-1); }
+.vt-page-header { margin-bottom: var(--space-2); }
+.vt-card-header { margin-bottom: var(--space-2); }
+.vt-form-header { margin-bottom: var(--space-1); }
+
+/* Glass cards (st.container keys starting with "card") */
+[class*="st-key-card"] {
+  background: var(--surface-elevated);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px rgba(0, 0, 0, 0.28);
+  padding: var(--space-3);
+  transition: border-color var(--spring-duration) var(--spring),
+              background-color var(--spring-duration) var(--spring);
+}
+[class*="st-key-card"]:hover {
+  border-color: var(--separator-strong);
+  background: var(--surface-elevated-hover);
+}
+
+/* Stat tiles */
+.vt-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+.vt-tile {
+  background: var(--surface-elevated);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  padding: var(--space-2) var(--space-3);
+}
+.vt-tile-label {
+  display: flex; align-items: center; gap: var(--space-1);
+  font-size: 13px; line-height: 18px; letter-spacing: -0.08px;
+  color: var(--text-secondary);
+}
+.vt-dot { width: 8px; height: 8px; border-radius: 9999px; flex: none; }
+.vt-tile-value {
+  font-family: var(--font-display);
+  font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: 0.36px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary); margin-top: 4px;
+}
+@media (max-width: 640px) {
+  .vt-tiles { grid-template-columns: 1fr; }
+}
+
+/* Buttons: pills with spring press */
+.stButton button, .stFormSubmitButton button {
+  border-radius: 9999px;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  font-size: 15px; font-weight: 600; letter-spacing: -0.23px;
+  border: 1px solid var(--separator);
+  background: var(--fill-tertiary);
+  color: var(--text-primary);
+  transition: transform var(--spring-duration) var(--spring),
+              background-color 200ms ease-out,
+              box-shadow 200ms ease-out;
+  will-change: transform;
+}
+.stButton button:hover, .stFormSubmitButton button:hover {
+  background: rgba(118, 118, 128, 0.32);
+  border-color: var(--separator-strong);
+  color: var(--text-primary);
+}
+.stButton button:active, .stFormSubmitButton button:active {
+  transform: scale(0.96);
+  transition-duration: var(--press-duration), 200ms, 200ms;
+  transition-timing-function: ease-out;
+}
+.stButton button:focus-visible, .stFormSubmitButton button:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  outline: none;
+}
+.stFormSubmitButton button[kind="primaryFormSubmit"] {
+  min-height: 48px;
+  font-size: 17px;
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+.stFormSubmitButton button[kind="primaryFormSubmit"]:hover {
+  background: #2490FF;
+  color: #fff;
+}
+.stFormSubmitButton button[kind="primaryFormSubmit"]:active { background: var(--accent-pressed); }
+
+/* Text fields */
+[data-testid="stTextInput"] label p {
+  font-size: 13px; font-weight: 500; color: var(--text-secondary);
+}
+[data-testid="stTextInput"] [data-baseweb="input"] {
+  background: var(--fill-quaternary);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-field);
+  transition: box-shadow 200ms ease-out, border-color 200ms ease-out;
+}
+[data-testid="stTextInput"] [data-baseweb="input"]:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+[data-testid="stTextInput"] input {
+  min-height: 44px; font-size: 17px; color: var(--text-primary);
+}
+
+/* Login sheet */
+.st-key-card-login { padding: var(--space-4); }
+.st-key-card-login [data-testid="stForm"] { border: none; padding: 0; }
+
+/* Alerts */
+[data-testid="stAlert"] > div { border-radius: var(--radius-field); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0ms !important; }
+}
