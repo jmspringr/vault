@@ -6,6 +6,6 @@ bcrypt
 python-multipart
 python-dotenv
 faker
-streamlit
+streamlit>=1.66
 plotly
 requests
