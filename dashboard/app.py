@@ -71,7 +71,7 @@ def base_layout(fig: go.Figure) -> go.Figure:
 
 
 def show_chart(fig: go.Figure):
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, config={"displayModeBar": False})
 
 
 def login_form():
@@ -88,7 +88,7 @@ def login_form():
             with st.form("login", border=False):
                 username = st.text_input("Username")
                 password = st.text_input("Password", type="password")
-                submitted = st.form_submit_button("Sign In", type="primary", width="stretch")
+                submitted = st.form_submit_button("Sign In", type="primary")
             st.markdown('<div class="vt-caption">Demo account: demo / demo123</div>',
                         unsafe_allow_html=True)
 
@@ -195,7 +195,7 @@ def dashboard():
             unsafe_allow_html=True,
         )
     with actions:
-        if st.button("Sign Out", width="stretch"):
+        if st.button("Sign Out"):
             del st.session_state.token
             st.rerun()
 

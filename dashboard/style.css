@@ -181,6 +181,14 @@
 }
 .stFormSubmitButton button[kind="primaryFormSubmit"]:active { background: var(--accent-pressed); }
 
+/* Full-width buttons, set in CSS so it works across Streamlit versions */
+.st-key-card-login [data-testid="stElementContainer"]:has(.stFormSubmitButton),
+.st-key-card-login .stFormSubmitButton,
+.st-key-card-login .stFormSubmitButton button,
+[data-testid="stColumn"] [data-testid="stElementContainer"]:has(.stButton),
+[data-testid="stColumn"] .stButton,
+[data-testid="stColumn"] .stButton button { width: 100%; }
+
 /* Text fields */
 [data-testid="stTextInput"] label p {
   font-size: 13px; font-weight: 500; color: var(--text-secondary);
