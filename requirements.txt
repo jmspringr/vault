@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+pyjwt
+bcrypt
+python-multipart
+python-dotenv
+faker
+streamlit
+plotly
+requests
