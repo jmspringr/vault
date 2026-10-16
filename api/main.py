@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from api import models  # noqa: F401  (registers tables with SQLModel)
 from api.auth import router as auth_router
 from api.database import create_db_and_tables
+from api.routers.summary import router as summary_router
 from api.routers.transactions import router as transactions_router
 
 
@@ -17,6 +18,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Vault API", lifespan=lifespan)
 app.include_router(auth_router)
 app.include_router(transactions_router)
+app.include_router(summary_router)
 
 
 @app.get("/health")
